@@ -1,0 +1,2 @@
+neo4j_addr = "https://localhost:7474"
+mongodb_addr = "https://localhost:5000"
