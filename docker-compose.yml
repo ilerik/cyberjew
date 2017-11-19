@@ -1,0 +1,17 @@
+version: '3.2'
+
+services:
+  core:
+    build: ./core
+    image: core:latest
+    ports:
+     - "3000:3000"
+  neo4j:
+    image: neo4j
+    volumes:
+      - ./docker/neo4j/data:/var/lib/neo4j/data # persistent storage
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: "none"

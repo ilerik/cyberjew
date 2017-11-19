@@ -1,0 +1,22 @@
+version: '3.0'
+
+services:
+  parity-dev:
+    build: .
+    image: parity-dev
+    volumes: 
+      - ./config:/config:ro
+    ports: 
+      - 8180:8180
+      - 8545:8545
+    command: --chain /config/dev-chain.json --ui-interface all --no-dapps --no-discovery --jsonrpc-interface all --jsonrpc-hosts all
+  # monitor:
+  #   image: buythewhale/ethstats_monitor
+  #   volumes:
+  #     - ./monitor/app.json:/home/ethnetintel/eth-net-intelligence-api/app.json:ro
+  # dashboard:
+  #   image: buythewhale/ethstats
+  #   volumes:
+  #     - ./dashboard/ws_secret.json:/eth-netstats/ws_secret.json:ro
+  #   ports:
+  #     - 3001:3000

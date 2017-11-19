@@ -4,6 +4,11 @@ use rusted_cypher::cypher::Statement;
 
 use errors::*;
 
+// Neo4j session
+pub struct Session {
+
+}
+
 // Neo4j database instance controller
 pub struct Neo4jDBClient {
     pub addr: Option<String>, // address of neo4j instance API endpoint
@@ -29,6 +34,11 @@ impl Neo4jDBClient {
         // Connect to the database
         self.graph = Some(GraphClient::connect(_addr).unwrap());
         self.addr = Some(_addr.to_string());
+        Ok(())
+    }
+
+    /// Execute querry and return session containing results
+    pub fn query(&self, _querry: &str) -> Result<()> {
         Ok(())
     }
 }

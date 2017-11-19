@@ -49,9 +49,11 @@ fn run() -> Result<()> {
 
     // Spin up the server on the event loop    
     core.run(future::done({
-        // start cyberjew
-        let cyberjew = Cyberjew::new();
-        cyberjew.launch("127.0.0.1", "./example.config.toml")
+        // instantiate cyberjew
+        let cyberjew = Cyberjew::new("./example.config.toml", "./secrets.toml")?;
+
+        // run REST API server
+        cyberjew.server("127.0.0.1")
     }))?;
 
     Ok(())
