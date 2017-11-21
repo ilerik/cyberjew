@@ -1,6 +1,10 @@
 use std::fs::File;
+use tokio_core::reactor::Handle;
+use futures::{Future, Stream};
 
 use clients::neo4j::Neo4jDBClient;
+use server::Server;
+use hyper::server::Http;
 
 use errors::*;
 use config::{Configuration, Secrets};
@@ -54,7 +58,17 @@ impl System {
     }
 
     /// REST API interface and process instantiation
-    pub fn server(&self, _addr: &str) -> Result<()> {
+    pub fn server(&self, _handle: &Handle, _addr: &str) -> Result<()> {
+        let addr = _addr.parse().unwrap();        
+        let server = Http::new().serve_addr_handle(&addr, &_handle, || Ok(Server{})).unwrap();
+        println!("Listening on http://{}", server.incoming_ref().local_addr());
+
+        let handle = _handle.clone();
+        _handle.spawn(server.for_each(move |conn| {
+            handle.spawn(conn.map(|_| ()).map_err(|err| println!("srv1 error: {:?}", err)));
+            Ok(())
+        }).map_err(|_| ()));
+        
         Ok(())
     }
 

@@ -14,7 +14,10 @@ use futures::Stream;
 use tokio_core::reactor::Core;
 
 use cyberjew::system::System as Cyberjew;
+use cyberjew::server::Server;
 use cyberjew::errors::*;
+
+static SERVICE_DESCRIPTION: &'static [u8] = b"CyberJew core service";
 
 //Entrypoint function that facilitates error handling
 fn main() {
@@ -52,9 +55,11 @@ fn run() -> Result<()> {
         // instantiate cyberjew
         let cyberjew = Cyberjew::new("./example.config.toml", "./secrets.toml")?;
 
-        // run REST API server
-        cyberjew.server("127.0.0.1")
+        // run REST API server        
+        cyberjew.server(&handle, "127.0.0.1:1337");
     }))?;
+
+    core.run(futures::future::empty::<(), ()>()).unwrap();
 
     Ok(())
 }

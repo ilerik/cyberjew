@@ -1,7 +1,3 @@
 # Top level core configuration
 neo4j_addr = "https://localhost:7474"
 mongodb_addr = "https://localhost:5000"
-
-# Secret part of configuration
-[keys]
-github_personal_token = "ad93b7981c41c2b423bf4bcb7672ceea00c84738"

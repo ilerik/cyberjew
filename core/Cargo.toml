@@ -15,7 +15,7 @@ log = "*"
 
 # Tokio
 futures = "*"
-hyper = "0.10"
+hyper = "0.11.2"
 tokio-core = "*"
 
 # json

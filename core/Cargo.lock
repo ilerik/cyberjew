@@ -96,7 +96,7 @@ dependencies = [
  "error-chain 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "futures 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
  "github-rs 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "hyper 0.10.13 (registry+https://github.com/rust-lang/crates.io-index)",
+ "hyper 0.11.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "pretty_env_logger 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rusted_cypher 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
